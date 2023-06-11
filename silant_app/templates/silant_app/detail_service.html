@@ -1,0 +1,30 @@
+{% extends 'silant_app/base.html' %}
+
+{% block content %}
+<div class="nav_table">
+    <a class="btn" href="{% url 'table_car' %}">Общая информация</a>
+    <a class="btn" href="{% url 'table_service' %}">ТО</a>
+    <a class="btn" href="{% url 'table_claims' %}">Рекламации</a>
+</div>
+<table>
+    <tr>
+        <td>Зав. № машины</td>
+        <td>Вид ТО</td>
+        <td>Дата проведения ТО</td>
+        <td>Наработка, м/час</td>
+        <td>№ заказ-наряда</td>
+        <td>Дата заказ-наряда</td>
+        <td>Организация, проводившая ТО</td>
+    </tr>
+    <tr>
+        <td>{{service.car}}</td>
+        <td>{{service.type_service}}</td>
+        <td>{{service.date_service}}</td>
+        <td>{{service.operating_time}}</td>
+        <td>{{service.work_order_number}}</td>
+        <td>{{service.work_order_date}}</td>
+        <td>{{service.service_company}}</td>
+    </tr>
+</table>
+
+{% endblock %}

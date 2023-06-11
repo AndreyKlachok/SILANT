@@ -1,0 +1,39 @@
+{% extends 'silant_app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="nav_table">
+    <a class="btn" href="{% url 'table_car' %}">Общая информация</a>
+    <a class="btn" href="{% url 'table_service' %}">ТО</a>
+    <a class="btn" href="{% url 'table_claims' %}">Рекламации</a>
+</div>
+<table>
+    <tr>
+        <td>Машина</td>
+        <td>Дата отказа</td>
+        <td>Наработка, м/час</td>
+        <td>Узел отказа</td>
+        <td>Описание отказа</td>
+        <td>Способ восстановления</td>
+        <td>Используемые запчасти</td>
+        <td>Дата восстановления</td>
+        <td>Время простоя техники</td>
+        <td>Сервисная компания</td>
+    </tr>
+    {% for p in posts %}
+    {% autoescape on %}
+    <tr>
+        <td>{{p.car}}</td>        
+        <td><a href="{{ p.get_absolute_url }}">{{p.date_rejection}}</a></td>
+        <td>{{p.operating_time}}</td>
+        <td>{{p.node_rejection}}</td>
+        <td>{{p.description_rejection}}</td>
+        <td>{{p.recovery_method}}</td>
+        <td>{{p.spare_parts}}</td>
+        <td>{{p.date_recovery}}</td>
+        <td>{{p.machine_downtime}}</td>
+        <td>{{p.service_company}}</td>
+    </tr>
+    {% endautoescape %}
+    {% endfor %}
+</table>
+{% endblock %}
